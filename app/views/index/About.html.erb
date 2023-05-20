@@ -1,0 +1,12 @@
+<div class="jumbotron">
+  <h1 class="display-4">Hii There <%if user_signed_in?%> UserName<%else%>New User<%end%></h1>
+  <p class="lead">This is an easy to use Application that enables you to create and keep a record of your friends Contact Information which only you can view.</p>-
+  <hr class="my-4">
+  <p>In our Friends App you can store details such as:<br/>1.Phone Contacts  2.Email Address  3.Instagram Account  4.Twitter Account  5.And Many More... </p>  
+  
+    <%if user_signed_in?%>
+        <%= link_to "Back to Friends", friends_infos_path, class:"btn btn-dark" %>                                                                                      
+    <%else%>
+  <%=link_to "SignUp Now", new_user_registration_path, class:"btn btn-primary btn-lg"%>
+    <%end%>
+</div>

@@ -1,0 +1,10 @@
+<h1>Edit</h1>
+
+<%= render "form", friends_info: @friends_info %>
+
+<br>
+
+<div>
+  <% link_to "Friend's Info", @friends_info, class:"btn btn-secondary" %> 
+  <%= link_to "Back to Friends", friends_infos_path, class:"btn btn-dark" %>
+</div>

@@ -1,0 +1,44 @@
+
+<%= form_with(model: friends_info) do |form| %>
+  <% if friends_info.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(friends_info.errors.count, "error") %> prohibited this friends_info from being saved:</h2>
+
+      <ul>
+        <% friends_info.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    
+    <%= form.text_field :First_name, class:"form-control", placeholder:"First Name"  %>
+  </div>
+
+  <div class="form-group">
+    
+    <%= form.text_field :Last_name, class:"form-control", placeholder:"Last Name"  %>
+  </div>
+
+  <div class="form-group">
+    
+    <%= form.text_field :Contact, class:"form-control", placeholder:"Contact"  %>
+  </div>
+
+  <div class="form-group">
+    
+    <%= form.text_field :Email, class:"form-control", placeholder:"Email"  %>
+  </div>
+
+  <div class="form-group">
+    
+    <%= form.text_field :Instagram, class:"form-control", placeholder:"Instagram" %>
+  </div>
+
+  <div>
+    <%= form.submit class:"btn btn-primary mb-2"  %>
+  </div>
+<% end %>
+ 

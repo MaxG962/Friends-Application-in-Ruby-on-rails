@@ -1,0 +1,42 @@
+<%# <p style="color: green"><%= notice %>
+
+<%# <h1> Friends</h1> %>
+ 
+<table class="table table-sm table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Contact</th>
+      <%# <th>Email</th>
+      <th>Instagram</th> %>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @friends_infos.each do |friends_info|%>
+    <tr>
+      <td><%=friends_info.First_name%></td>
+      <td><%=friends_info.Last_name%></td>
+      <td><%=friends_info.Contact%></td>
+      <td><%=link_to "More Info", friends_info, class:"btn btn-primary mb-2"%></td>
+      <td><%= button_to "Delete", friends_info, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+    
+    </tr>
+    <% end %>
+  </tbody>
+</table>  
+<%= link_to "Create New Friend", new_friends_info_path, class:"btn btn-dark" %>
+
+
+<%# <div id="friends_infos" >  %>
+  <%# <% @friends_infos.each do |friends_info| %>
+    <%# <% render friends_info %> 
+    <%# <p> %>
+      <%# <%= link_to "Show Info", friends_info, class:"btn btn-secondary" %>
+    <%# </p> %>
+  <%# <% end %>
+<%# </div> %>
+
+<%# <%= link_to "Create New Friend", new_friends_info_path, class:"btn btn-dark" %>
