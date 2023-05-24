@@ -1,6 +1,7 @@
 class FriendsInfosController < ApplicationController
   before_action :set_friends_info, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   # GET /friends_infos or /friends_infos.json
   def index
     @friends_infos = FriendsInfo.all
@@ -12,7 +13,8 @@ class FriendsInfosController < ApplicationController
 
   # GET /friends_infos/new
   def new
-    @friends_info = FriendsInfo.new
+    # @friends_info = FriendsInfo.new
+    @friends_info = current_user.friends_info.build
   end
 
   # GET /friends_infos/1/edit
@@ -21,7 +23,8 @@ class FriendsInfosController < ApplicationController
 
   # POST /friends_infos or /friends_infos.json
   def create
-    @friends_info = FriendsInfo.new(friends_info_params)
+    # @friends_info = FriendsInfo.new(friends_info_params)
+    @friends_info = current_user.friends_info.build(friends_info_params)
 
     respond_to do |format|
       if @friends_info.save
@@ -57,6 +60,11 @@ class FriendsInfosController < ApplicationController
     end
   end
 
+  def correct_user
+    @friends_info = current_user.friends_info.find_by(id: params[:id])
+    redirect_to friends_info_url(@friends_info), notice: "Not Authorized To Edit This Friend" if @friends_info.nil? 
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_friends_info
@@ -65,6 +73,7 @@ class FriendsInfosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def friends_info_params
-      params.require(:friends_info).permit(:First_name, :Last_name, :Contact, :Email, :Instagram)
+      params.require(:friends_info).permit(:First_name, :Last_name, :Contact, :Email, :Instagram, :user_id)
     end
-end
+  
+  end
